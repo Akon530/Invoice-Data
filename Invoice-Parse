@@ -1,0 +1,20 @@
+import pandas as pd
+Inv = pd.read_excel('Invoice.xlsx', sheet_name = 'data')
+
+print('Total amount already paid:')
+print(Inv['Amount_Paid'].sum()) #Takes the Amount Paid column and sums it
+print('')
+
+print('Total amount still owed:')
+print(Inv['Total_Amount_Owed'].sum()) #Takes the Amount Owed column and sums it
+print('')
+
+print('Number of Invoices by Industry:')
+Inv_CountByInd = Inv[['Invoice_id', 'Industry']].groupby('Industry') #Groups Invoices by Industry
+print(Inv_CountByInd.count()) #Outputs count of invoices by each industry
+print('')
+
+print('Total amount owed by Industry:')
+Inv_TotalOwedByInd = Inv[['Total_Amount_Owed', 'Industry']].groupby('Industry') #Groups Total Owed by Industry
+print(Inv_TotalOwedByInd.sum()) #Outputs total amount owed by each industry
+print('')
